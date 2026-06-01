@@ -1,2 +1,0 @@
-//oioioi
-int oi;
