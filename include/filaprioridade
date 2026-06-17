@@ -1,0 +1,66 @@
+#ifndef FILAPRIORIDADE_H
+#define FILAPRIORIDADE_H
+
+#include <stddef.h>  /* size_t */
+
+/*
+ * filaPrioridade.h — Fila de Prioridades (Priority Queue) com Heap
+ *
+ * Implementação usando heap binário (max-heap).
+ * Usada em: Dijkstra
+ */
+
+typedef void *FilaPrioridade;
+
+/**
+ * Cria uma fila de prioridades vazia.
+ * @param capacidade capacidade máxima (-1 = ilimitada)
+ */
+FilaPrioridade filaPrioridadeCreate(int capacidade);
+
+/**
+ * Insere um elemento com prioridade.
+ * @param fp fila
+ * @param id identificador único (string)
+ * @param dado dados associados (ex: distância)
+ * @param tamDado tamanho dos dados
+ * @param prioridade prioridade (quanto maior, maior prioridade)
+ */
+void filaPrioridadeInsere(FilaPrioridade fp, const char *id, 
+                          void *dado, size_t tamDado, double prioridade);
+
+/**
+ * Remove e retorna o elemento de maior prioridade.
+ * Retorna string com ID do elemento removido.
+ */
+char *filaPrioridadeRemoveMax(FilaPrioridade fp);
+
+/**
+ * Retorna o ID do elemento de maior prioridade sem remover.
+ */
+const char *filaPrioridadeGetMax(FilaPrioridade fp);
+
+/**
+ * Retorna os dados associados a um ID.
+ * Retorna NULL se não encontrado.
+ */
+void *filaPrioridadeGetDado(FilaPrioridade fp, const char *id);
+
+/**
+ * Atualiza a prioridade de um elemento.
+ * Retorna 1 se sucesso, 0 se ID não existe.
+ */
+int filaPrioridadeMudaPrioridade(FilaPrioridade fp, const char *id, 
+                                  double novaPrio);
+
+/**
+ * Retorna 1 se fila vazia, 0 caso contrário.
+ */
+int filaPrioridadeVazia(FilaPrioridade fp);
+
+/**
+ * Libera memória da fila de prioridades.
+ */
+void filaPrioridadeDestroy(FilaPrioridade fp);
+
+#endif /* FILAPRIORIDADE_H */
